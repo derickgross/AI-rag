@@ -1,3 +1,6 @@
+This application was adapted from Latent Space University's AI-101 course
+https://www.latent.space/
+
 ```bash
 python -m venv venv
 
