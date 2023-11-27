@@ -115,4 +115,4 @@ df['n_tokens'] = df.text.apply(lambda x: len(tokenizer.encode(x)))
 
 df['embeddings'] = df.text.apply(lambda x: openai.Embedding.create(input=x, engine='text-embedding-ada-002')['data'][0]['embedding'])
 
-df.to_csv('processed/embeddings2.csv')
+df.to_csv('processed/embeddings.csv')
