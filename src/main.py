@@ -65,7 +65,7 @@ Here are two input:output examples for code generation. Please use these and fol
 </button>
 """
 
-df = pd.read_csv('processed/embeddings2.csv', index_col=0)
+df = pd.read_csv('processed/embeddings.csv', index_col=0)
 df['embeddings'] = df['embeddings'].apply(eval).apply(np.array)
 
 messages = [{
