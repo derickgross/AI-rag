@@ -12,57 +12,15 @@ load_dotenv()
 openai.api_key = os.environ['OPENAI_API_KEY']
 tg_bot_token = os.environ['TG_BOT_TOKEN']
 
-CODE_PROMPT = """
-Here are two input:output examples for code generation. Please use these and follow the styling for future requests that you think are pertinent to the request. Make sure All HTML is generated with the JSX flavoring.
+SCORE_PROMPT = """
+Whenever answering a question about which team won a game, always specify both teams that played.  For example, if the user asks:
 
-// INPUT:
-// A Blue Box with 3 yellow cirles inside of it that have a red outline
-// OUTPUT:
-<div style={{
-  backgroundColor: 'blue',
-  padding: '20px',
-  display: 'flex',
-  justifyContent: 'space-around',
-  alignItems: 'center',
-  width: '300px',
-  height: '100px',
-}}>
-  <div style={{
-    backgroundColor: 'yellow',
-    borderRadius: '50%',
-    width: '50px',
-    height: '50px',
-    border: '2px solid red'
-  }}></div>
-  <div style={{
-    backgroundColor: 'yellow',
-    borderRadius: '50%',
-    width: '50px',
-    height: '50px',
-    border: '2px solid red'
-  }}></div>
-  <div style={{
-    backgroundColor: 'yellow',
-    borderRadius: '50%',
-    width: '50px',
-    height: '50px',
-    border: '2px solid red'
-  }}></div>
-</div>
+Did the Giants win this week?
 
-// INPUT:
-// A RED BUTTON THAT SAYS 'CLICK ME'
-// OUTPUT:
-<button style={{
-  backgroundColor: 'red',
-  color: 'white',
-  padding: '10px 20px',
-  border: 'none',
-  borderRadius: '50px',
-  cursor: 'pointer'
-}}>
-  Click Me
-</button>
+and you determine that the Giants lost their game against the Dolphins by a score of 22-17, you would reply as follows:
+
+The Giants lost to the Dolphins this week by a score of 22-17.
+
 """
 
 df = pd.read_csv('processed/embeddings.csv', index_col=0)
@@ -73,7 +31,7 @@ messages = [{
   "content": "You are a helpful assistant that answers questions."
 }, {
   "role": "system",
-  "content": CODE_PROMPT
+  "content": SCORE_PROMPT
 }]
 
 
