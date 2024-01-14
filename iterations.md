@@ -22,3 +22,4 @@ Implementation details:
 - which LLM should we use?  Continue with OpenAI via API, or use a reasonably sized model that can be hosted?
     - consider baseline for answering SWE questions.  Better if there is a bigger difference in TruLens ratings between base and RAG implementations.
 - hosting: AWS, or something like Heroku?  Probably AWS, as I've used it more recently
+- when to integrate with website?  Sooner allows users to experience my work sooner, but later allows focus to remain on building core skills.  Probably sooner, as part of the goal is to learn in public
