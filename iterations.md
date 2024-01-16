@@ -25,3 +25,6 @@ Implementation details:
 - hosting: AWS, or something like Heroku?  Probably AWS, as I've used it more recently
 - when to integrate with website?  Sooner allows users to experience my work sooner, but later allows focus to remain on building foundational skills.  Probably sooner, as part of the goal is to learn in public
 - use Github Actions to update architecture
+
+Resources:
+- https://dev.to/aws-builders/deploy-to-aws-with-github-actions-and-aws-cdk-4m1e
