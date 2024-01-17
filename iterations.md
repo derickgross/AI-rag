@@ -28,3 +28,4 @@ Implementation details:
 
 Resources:
 - https://dev.to/aws-builders/deploy-to-aws-with-github-actions-and-aws-cdk-4m1e
+- https://github.com/stagehand-framework/stagehand/blob/main/templates/create_review_app.yml
