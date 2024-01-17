@@ -4,16 +4,13 @@ on:
 
     name: Build App
 jobs:
-  build_app:
+  build:
     runs-on: ubuntu-latest
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}  
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: ${{ secrets.AWS_REGION || 'us-east-1' }}
       AWS_CF_DOMAIN: '${{ secrets.AWS_CF_DOMAIN }}'
-      BRANCH_NAME: ${{ github.head_ref }}
-      SOURCE_DIR: "SOURCE_DIR"
-      DEST_DIR: ${{ github.head_ref }}/${{ github.sha }}
 
     steps:
       - name: Missing AWS Credentials
@@ -29,8 +26,8 @@ jobs:
         uses: actions/checkout@v1
       - name: Setup app
         run: STAGEHAND_SETUP_CMD
-      - name: Clean out directory
-        run: rm -rf ${{ env.SOURCE_DIR }}
+      # - name: Clean out directory
+      #   run: rm -rf ${{ env.SOURCE_DIR }}
 ####### Uncomment below to add env variables to use during build process #######
 ####### Add \n to the end of each secret to start a new line #######
 ####### EXCEPT DO NOT add to the end of the last secret #######
