@@ -16,12 +16,6 @@ jobs:
       - name: Missing AWS Credentials
         if: ${{ !env.AWS_SECRET_KEY || !env.AWS_ACCESS_KEY }}
         run: exit 1
-      # - name: Missing S3 Bucket name
-      #   if: ${{ !env.AWS_S3_BUCKET }}
-      #   run: exit 1
-      # - name: Invalid CloudFront Domain
-      #   if: ${{ !contains(env.AWS_CF_DOMAIN, 'cloudfront.net') }}
-      #   run: exit 1
       - name: Checkout
         uses: actions/checkout@v1
       - name: Install Python dependencies and CDK
