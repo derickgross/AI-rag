@@ -7,67 +7,37 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}  
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}  
+      AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
       AWS_REGION: ${{ secrets.AWS_REGION || 'us-east-1' }}
       AWS_CF_DOMAIN: '${{ secrets.AWS_CF_DOMAIN }}'
 
     steps:
       - name: Missing AWS Credentials
-        if: ${{ !env.AWS_SECRET_ACCESS_KEY || !env.AWS_ACCESS_KEY_ID }}
+        if: ${{ !env.AWS_SECRET_KEY || !env.AWS_ACCESS_KEY }}
         run: exit 1
       # - name: Missing S3 Bucket name
       #   if: ${{ !env.AWS_S3_BUCKET }}
       #   run: exit 1
-      - name: Invalid CloudFront Domain
-        if: ${{ !contains(env.AWS_CF_DOMAIN, 'cloudfront.net') }}
-        run: exit 1
+      # - name: Invalid CloudFront Domain
+      #   if: ${{ !contains(env.AWS_CF_DOMAIN, 'cloudfront.net') }}
+      #   run: exit 1
       - name: Checkout
         uses: actions/checkout@v1
       - name: Setup app
         run: STAGEHAND_SETUP_CMD
-      # - name: Clean out directory
-      #   run: rm -rf ${{ env.SOURCE_DIR }}
-####### Uncomment below to add env variables to use during build process #######
-####### Add \n to the end of each secret to start a new line #######
-####### EXCEPT DO NOT add to the end of the last secret #######
-      # - name: create .env
-      #   run: echo -e "\
-      #     SECRET1=${{ secrets.YOUR_SECRET1 }}\n
-      #     SECRET2=${{ secrets.YOUR_SECRET2 }}" > .env
-      - name: Build Site
-        run: STAGEHAND_BUILD_CMD
-      - name: Inject routes into stagehand files
+      - name: Install Python dependencies and CDK
         run: |
-          sed -i 's/STAGEHAND_PLACEHOLDER/${{ env.AWS_CF_DOMAIN }}/' ./.github/stagehand/stagehand.js
-          sed -i 's/STAGEHAND_PLACEHOLDER/${{ env.AWS_CF_DOMAIN }}\/${{ github.head_ref }}\/${{ github.sha }}/' ./.github/stagehand/stagehand.html
-      - name: Set date
-        id: date
-        run: echo "::set-output name=date::$(TZ=America/New_York date)"
-      - name: Inject date info to stagehand banner
-        run: sed -i 's/STAGEHAND_CREATED/Stagehand app created on ${{steps.date.outputs.date}}/' ./.github/stagehand/stagehand.html
-      - name: Inject branch info to stagehand banner
-        run: sed -i 's/STAGEHAND_BRANCH/PR on branch ${{github.base_ref}}/' ./.github/stagehand/stagehand.html
-      - name: Inject repo info to stagehand banner
-        run: sed -i 's/STAGEHAND_REPO/Owner:${{ github.repository_owner }}/' ./.github/stagehand/stagehand.html
-      - uses: aws-actions/configure-aws-credentials@v1
+          python -m pip install --upgrade pip
+          # install your Python dependencies here
+          npm install -g aws-cdk
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@master
         with:
-          aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
-      - name: Sync to S3 Bucket
-        run: aws s3 sync ./${{ env.SOURCE_DIR }} s3://${{ env.AWS_S3_BUCKET }}/${{ env.DEST_DIR }}
-      - name: Add stagehand files to S3 Bucket
-        run: |
-          aws s3 cp ./.github/stagehand/stagehand.js s3://${{ env.AWS_S3_BUCKET }}/${{ env.DEST_DIR }}/stagehand.js
-          aws s3 cp ./.github/stagehand/stagehand.html s3://${{ env.AWS_S3_BUCKET }}/${{ env.DEST_DIR }}/stagehand.html
-          aws s3 cp ./.github/stagehand/stagehand_sw.js s3://${{ env.AWS_S3_BUCKET }}/stagehand_sw.js
-          aws s3 cp ./.github/stagehand/stagehand_logo.svg s3://${{ env.AWS_S3_BUCKET }}/${{ env.DEST_DIR }}/stagehand_logo.svg
-      - name: "Comment PR"
-        uses: actions/github-script@v3
-        if: github.event_name == 'pull_request'
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const { issue: { number: issue_number }, repo: { owner, repo }  } = context;
-            github.issues.createComment({ issue_number, owner, repo, body: 'Check out the preview here https://${{ env.AWS_CF_DOMAIN }}/${{ github.head_ref }}/${{ github.sha }}' });
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: "us-east-1"
+      - name: Deploy to AWS
+        run: cdk deploy --app="python3 ${PWD}/cdk/my_service/app.py" --require-approval=never
+      - name: Destroy stack
+        run: cdk destroy --app="python3 ${PWD}/cdk/my_service/app.py" --force
