@@ -1,6 +1,8 @@
 AI app iterations and upcoming features
 ================
 
+Next: Design AWS CDK architecture
+
 Wishlist:
 - integration with derickgross.com
 - ability to interact with AI (ask software engineering questions)
