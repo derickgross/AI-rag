@@ -1,3 +1,5 @@
+name: Deploy to AWS (CDK)
+
 on:
   pull_request:
     types: [reopened, opened, synchronize, edited]
