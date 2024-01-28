@@ -3,6 +3,9 @@ AI app iterations and upcoming features
 
 Next: Design AWS CDK architecture
 
+Architecture:
+- EC2, or serverless?  I can likely use serverless, and have lambdas for processing embeddings when they change (and storing them in S3), fulfilling requests, etc.
+
 Wishlist:
 - integration with derickgross.com
 - ability to interact with AI (ask software engineering questions)
