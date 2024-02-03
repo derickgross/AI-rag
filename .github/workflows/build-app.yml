@@ -1,8 +1,9 @@
 name: Deploy to AWS (CDK)
 
 on:
-  pull_request:
-    types: [reopened, opened, synchronize, edited]
+  push:
+    branches:
+      - main
 
     name: Build App
 jobs:
