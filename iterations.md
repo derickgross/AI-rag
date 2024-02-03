@@ -2,6 +2,7 @@ AI app iterations and upcoming features
 ================
 
 Next: Design AWS CDK architecture
+- Github Actions are running on push to main branch (errors because app.py missing app.synth()).  Need to finish app.py.  
 
 Architecture:
 - EC2, or serverless?  I can likely use serverless, and have lambdas for processing embeddings when they change (and storing them in S3), fulfilling requests, etc.
