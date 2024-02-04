@@ -6,7 +6,7 @@ import openai
 from dotenv import load_dotenv
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
-def embed():
+def embed_docs():
   """
   Creates an embedding from MDN docs. 
   """
