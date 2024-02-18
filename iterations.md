@@ -31,6 +31,8 @@ Implementation details:
 - hosting: AWS, or something like Heroku?  Probably AWS, as I've used it more recently
 - when to integrate with website?  Sooner allows users to experience my work sooner, but later allows focus to remain on building foundational skills.  Probably sooner, as part of the goal is to learn in public
 - use Github Actions to update architecture
+- key actions/events:
+    - create embeddings: lambda runs embed.py, then stores result in S3.  Should only run when certain files that impact the embedding are changed (which files?).  This means it's likely ideal to call this within the Github Actions build-app workflow.
 
 Resources:
 - https://dev.to/aws-builders/deploy-to-aws-with-github-actions-and-aws-cdk-4m1e
