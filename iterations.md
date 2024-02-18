@@ -38,3 +38,4 @@ Resources:
 - https://dev.to/aws-builders/deploy-to-aws-with-github-actions-and-aws-cdk-4m1e
 - https://github.com/stagehand-framework/stagehand/blob/main/templates/create_review_app.yml
 - Jackson Yuan's Github Actions and AWS Serverless video: https://www.youtube.com/watch?v=KorJPUKvHKc
+- Latent Space University: https://www.latent.space/p/aie-2023-workshops
