@@ -8,6 +8,7 @@ from openai.embeddings_utils import distances_from_embeddings
 load_dotenv()
 openai.api_key = os.environ['OPENAI_API_KEY']
 
+# TODO: fetch pre-processed embeddings from S3
 df = pd.read_csv('processed/embeddings.csv', index_col=0)
 df['embeddings'] = df['embeddings'].apply(eval).apply(np.array)
 
