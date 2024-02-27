@@ -22,5 +22,11 @@ class S3BucketEmbeddingsStack(Stack):
     def __init__(self, scope: Construct, id: str, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
 
-    # create s3 bucket
-    s3 = _s3.Bucket(self, "embeddingsBucket")
+        # create lambda function
+        function = _lambda.Function(self, "embeddings_function",
+                                    runtime=_lambda.Runtime.PYTHON_3_7,
+                                    handler="question-handler.handle_question",
+                                    code=_lambda.Code.from_asset("./lambda"))
+
+        # create s3 bucket
+        s3 = _s3.Bucket(self, "embeddingsBucket")
