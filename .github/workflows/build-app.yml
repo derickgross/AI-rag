@@ -49,6 +49,8 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: "us-east-1"
+      - name: Add to Python path
+        run: export PYTHONPATH=/home/runner/work/AI-rag:$PYTHONPATH
       - name: Deploy to AWS
         run: cdk deploy --app="python3 -m cdk.ai-rag.app" --require-approval=never
       # - name: Destroy stack
