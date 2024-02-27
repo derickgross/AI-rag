@@ -17,16 +17,25 @@ from aws_cdk import(
     Stack
 )
 from constructs import Construct
+from embedding.embed import embed_docs
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class S3BucketEmbeddingsStack(Stack):
     def __init__(self, scope: Construct, id: str, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
 
-        # create lambda function
-        function = _lambda.Function(self, "embeddings_function",
-                                    runtime=_lambda.Runtime.PYTHON_3_7,
-                                    handler="question-handler.handle_question",
-                                    code=_lambda.Code.from_asset("./lambda"))
+        bucket_name = os.environ['EMBEDDINGS_BUCKET_NAME']
+
+        embed_destination = f"arn:aws:s3:::{bucket_name}/*"
 
         # create s3 bucket
-        s3 = _s3.Bucket(self, "embeddingsBucket")
+        s3 = _s3.Bucket(
+            self,
+            "embeddingsBucket",
+            bucket_name=bucket_name
+        )
+
+        embed_docs(destination=embed_destination)
