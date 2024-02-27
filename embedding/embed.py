@@ -6,7 +6,7 @@ import openai
 from dotenv import load_dotenv
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
-def embed_docs():
+def embed_docs(destination=None):
   """
   Creates an embedding from MDN docs. 
   """
@@ -97,4 +97,7 @@ def embed_docs():
 
   df['embeddings'] = df.text.apply(lambda x: openai.Embedding.create(input=x, engine='text-embedding-ada-002')['data'][0]['embedding'])
 
-  df.to_csv('processed/embeddings.csv')
+  if not destination:
+    destination = 'processed/embeddings.csv'
+
+  df.to_csv(destination)
