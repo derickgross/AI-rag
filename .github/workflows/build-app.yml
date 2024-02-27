@@ -50,6 +50,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: "us-east-1"
       - name: Deploy to AWS
-        run: cdk deploy --app="python3 -m home.runner.work.AI-rag.AI-rag.cdk.ai-rag.app" --require-approval=never
+        run: cdk deploy --app="python3 -m app" --require-approval=never
       # - name: Destroy stack
       #   run: cdk destroy --app="python3 ${PWD}/cdk/ai-rag/app.py" --force
