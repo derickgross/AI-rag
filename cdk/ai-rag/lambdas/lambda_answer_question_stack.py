@@ -1,9 +1,9 @@
 from aws_cdk import(
     aws_apigateway as apigw,
     Stack,
-    Construct,
     _lambda
 )
+from constructs import Construct
 
 class LambdaAnswerQuestionStack(Stack):
     def __init__(self, scope: Construct, id: str, **kwargs) -> None:
