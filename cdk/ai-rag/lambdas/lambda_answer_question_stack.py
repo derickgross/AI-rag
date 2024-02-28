@@ -1,7 +1,7 @@
 from aws_cdk import(
     aws_apigateway as apigw,
     Stack,
-    _lambda
+    aws_lambda as _lambda,
 )
 from constructs import Construct
 
