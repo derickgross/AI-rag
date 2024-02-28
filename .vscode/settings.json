@@ -1,0 +1,7 @@
+{
+    "python.analysis.extraPaths": [
+        "./cdk/ai-rag/s3trigger",
+        "./cdk/ai-rag/s3",
+        "./cdk/ai-rag/lambdas"
+    ]
+}
