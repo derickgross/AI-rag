@@ -1,4 +1,7 @@
-from aws_cdk import aws_apigateway as apigw
+from aws_cdk import(
+    aws_apigateway as apigw,
+    Stack
+)
 
 class LambdaAnswerQuestionStack(Stack):
     def __init__(self, scope: Construct, id: str, **kwargs) -> None:
