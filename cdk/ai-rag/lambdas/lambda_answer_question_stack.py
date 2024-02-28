@@ -1,6 +1,8 @@
 from aws_cdk import(
     aws_apigateway as apigw,
-    Stack
+    Stack,
+    Construct,
+    _lambda
 )
 
 class LambdaAnswerQuestionStack(Stack):
