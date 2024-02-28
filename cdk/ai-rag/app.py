@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
-import sys
-sys.path.insert(0, '/home/runner/work/AI-rag')
+# import sys
+# sys.path.insert(0, '/home/runner/work/AI-rag')
 
-from aws_cdk import App
+# from aws_cdk import App
 
 from s3trigger.s3trigger_stack import S3TriggerStack
 from s3.s3bucket_embeddings_stack import S3BucketEmbeddingsStack
