@@ -40,7 +40,8 @@ jobs:
             ${{ runner.os }}-
       - name: Install Python dependencies and CDK
         run: |
-          python -m pip install --upgrade pip
+          # python -m pip install --upgrade pip
+          python -m pip install 23.0.1
           pip install -r requirements.txt
           npm install -g aws-cdk
       - name: Configure AWS credentials
