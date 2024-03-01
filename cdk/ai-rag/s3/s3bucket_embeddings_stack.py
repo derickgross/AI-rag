@@ -27,7 +27,7 @@ class S3BucketEmbeddingsStack(Stack):
     def __init__(self, scope: Construct, id: str, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
 
-        bucket_name = os.environ['EMBEDDINGS_BUCKET_NAME']
+        bucket_name = os.environ.get('EMBEDDINGS_BUCKET_NAME')
 
         embed_destination = f"arn:aws:s3:::{bucket_name}/*"
 
@@ -35,7 +35,7 @@ class S3BucketEmbeddingsStack(Stack):
         s3 = _s3.Bucket(
             self,
             "embeddings-bucket",
-            bucket_name="embeddings-bucket"
+            bucket_name=bucket_name
         )
 
         embed_docs(destination=embed_destination)
