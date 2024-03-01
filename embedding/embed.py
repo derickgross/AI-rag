@@ -11,7 +11,7 @@ def embed_docs(destination=None):
   Creates an embedding from MDN docs. 
   """
   load_dotenv()
-  openai.api_key = os.environ['OPENAI_API_KEY']
+  openai.api_key = os.environ.get('OPENAI_API_KEY')
 
   DOMAIN = "developer.mozilla.org"
 
