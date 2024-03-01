@@ -17,10 +17,10 @@ class S3TriggerStack(Stack):
         #                             handler="lambda-handler.main",
         #                             code=_lambda.Code.from_asset("./lambda"))
         # create s3 bucket
-        s3 = _s3.Bucket(self, "s3bucket")
+        # s3 = _s3.Bucket(self, "s3bucket")
 
-        # create s3 notification for lambda function
-        notification = aws_s3_notifications.LambdaDestination(function)
+        # # create s3 notification for lambda function
+        # notification = aws_s3_notifications.LambdaDestination(function)
 
-        # assign notification for the s3 event type (ex: OBJECT_CREATED)
-        s3.add_event_notification(_s3.EventType.OBJECT_CREATED, notification)
+        # # assign notification for the s3 event type (ex: OBJECT_CREATED)
+        # s3.add_event_notification(_s3.EventType.OBJECT_CREATED, notification)
