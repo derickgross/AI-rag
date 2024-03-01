@@ -15,7 +15,7 @@ jobs:
       AWS_CF_DOMAIN: '${{ secrets.AWS_CF_DOMAIN }}'
       NODE_VERSION: 20.x
       DEPLOYMENT_DIR: $(pwd | sed 's/\//./g').cdk.ai-rag.app
-      EMBEDDINGS_BUCKET_NAME: "embeddings_bucket"
+      # EMBEDDINGS_BUCKET_NAME: "embeddings_bucket"
     strategy:
       matrix:
         python-version:
