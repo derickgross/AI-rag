@@ -35,7 +35,7 @@ class S3BucketEmbeddingsStack(Stack):
         s3 = _s3.Bucket(
             self,
             "embeddings-bucket",
-            bucket_name=bucket_name
+            bucket_name="embeddings-bucket"
         )
 
         embed_docs(destination=embed_destination)
