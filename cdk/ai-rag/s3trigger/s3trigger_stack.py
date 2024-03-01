@@ -11,11 +11,11 @@ class S3TriggerStack(Stack):
     def __init__(self, scope: Construct, id: str, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
 
-        # create lambda function
-        function = _lambda.Function(self, "lambda_function",
-                                    runtime=_lambda.Runtime.PYTHON_3_7,
-                                    handler="lambda-handler.main",
-                                    code=_lambda.Code.from_asset("./lambda"))
+        # # create lambda function
+        # function = _lambda.Function(self, "lambda_function",
+        #                             runtime=_lambda.Runtime.PYTHON_3_7,
+        #                             handler="lambda-handler.main",
+        #                             code=_lambda.Code.from_asset("./lambda"))
         # create s3 bucket
         s3 = _s3.Bucket(self, "s3bucket")
 
