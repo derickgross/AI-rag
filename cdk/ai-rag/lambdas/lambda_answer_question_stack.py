@@ -12,15 +12,15 @@ class LambdaAnswerQuestionStack(Stack):
 
         cwd = os.getcwd()
         files = os.listdir()
-        print("current directory: ", cwd)
-        print("files in this directory: ", files)
+        # print("current directory: ", cwd)
+        # print("files in this directory: ", files)
 
         # create lambda function
         question_handler = _lambda.Function(
             self, "handle_question_function",
             runtime=_lambda.Runtime.PYTHON_3_7,
             handler="question-handler.handle_question",
-            code=_lambda.Code.from_asset(os.path.join(cwd, 'lambdas/question-handler.py.zip'))
+            code=_lambda.Code.from_asset(os.path.join(cwd, '/cdk/ai-rag/lambdas/question-handler.py.zip'))
         )
 
         # create API Gateway endpoint that handles questions
