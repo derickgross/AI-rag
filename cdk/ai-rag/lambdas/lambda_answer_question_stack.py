@@ -11,6 +11,7 @@ class LambdaAnswerQuestionStack(Stack):
         super().__init__(scope, id, **kwargs)
 
         cwd = os.getcwd()
+        print("current directory: ", cwd)
 
         # create lambda function
         question_handler = _lambda.Function(
