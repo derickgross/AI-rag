@@ -11,9 +11,9 @@ class LambdaAnswerQuestionStack(Stack):
         super().__init__(scope, id, **kwargs)
 
         cwd = os.getcwd()
-        files = os.listdir()
-        # print("current directory: ", cwd)
-        # print("files in this directory: ", files)
+        files = os.listdir('./cdk/ai-rag/lambdas/')
+        print("current directory: ", cwd)
+        print("files in ./cdk/ai-rag/lambdas/: ", files)
 
         # create lambda function
         question_handler = _lambda.Function(
