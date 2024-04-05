@@ -38,8 +38,10 @@ class S3BucketEmbeddingsStack(Stack):
             bucket_name=bucket_name
         )
         if s3:
+            print(s3)
             print("S3 bucket created")
+            embed_docs(destination=embed_destination)
         else:
             print("Failed to create S3 bucket")
 
-        embed_docs(destination=embed_destination)
+        # embed_docs(destination=embed_destination)
