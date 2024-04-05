@@ -17,7 +17,7 @@ class LambdaAnswerQuestionStack(Stack):
             self, "handle_question_function",
             runtime=_lambda.Runtime.PYTHON_3_7,
             handler="question-handler.handle_question",
-            code=_lambda.Code.from_asset(os.path.join(cwd, 'question-handler.py.zip'))
+            code=_lambda.Code.from_asset(os.path.join(cwd, 'lambdas/question-handler.py.zip'))
         )
 
         # create API Gateway endpoint that handles questions
