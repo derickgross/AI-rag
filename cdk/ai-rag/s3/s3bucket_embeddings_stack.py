@@ -41,7 +41,8 @@ class S3BucketEmbeddingsStack(Stack):
             s3.create()
             s3.wait_until_exists()
             print("S3 bucket created")
+            embed_docs(destination=embed_destination)
         except:
             print("Failed to create S3 bucket")
 
-        embed_docs(destination=embed_destination)
+        # embed_docs(destination=embed_destination)
