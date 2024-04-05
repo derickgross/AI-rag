@@ -56,7 +56,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: "us-east-1"
       - name: Bootstrap
-        run: cdk bootstrap
+        run: cdk bootstrap aws://819190120328/us-east-1
       - name: Deploy to AWS
         run: cdk deploy --app="python3 -m cdk.ai-rag.app" --require-approval=never --all
       # - name: Destroy stack
