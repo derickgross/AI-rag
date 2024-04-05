@@ -4,6 +4,7 @@ from aws_cdk import(
     aws_lambda as _lambda,
 )
 from constructs import Construct
+from os import path
 
 class LambdaAnswerQuestionStack(Stack):
     def __init__(self, scope: Construct, id: str, **kwargs) -> None:
@@ -14,7 +15,7 @@ class LambdaAnswerQuestionStack(Stack):
             self, "handle_question_function",
             runtime=_lambda.Runtime.PYTHON_3_7,
             handler="question-handler.handle_question",
-            code=_lambda.Code.from_asset("./lambdas/question-handler.py")
+            code=_lambda.Code.from_asset(path.join(path.dirname, 'question-handler')
         )
 
         # create API Gateway endpoint that handles questions
