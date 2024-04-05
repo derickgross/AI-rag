@@ -1,5 +1,5 @@
 from aws_cdk import(
-    aws_apigateway as apigw,
+    aws_apigateway,
     Stack,
     aws_lambda as _lambda,
 )
@@ -19,7 +19,7 @@ class LambdaAnswerQuestionStack(Stack):
         )
 
         # create API Gateway endpoint that handles questions
-        apigw.LambdaRestApi(
+        api = aws_apigateway.LambdaRestApi(
             self, 'Endpoint',
             handler=question_handler,
         )
