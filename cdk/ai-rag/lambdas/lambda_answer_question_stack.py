@@ -10,7 +10,7 @@ class LambdaAnswerQuestionStack(Stack):
     def __init__(self, scope: Construct, id: str, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
 
-        cwd = os.getcwd()
+        cwd = os.getcwd() #
 
         # create lambda function
         question_handler = _lambda.Function(
