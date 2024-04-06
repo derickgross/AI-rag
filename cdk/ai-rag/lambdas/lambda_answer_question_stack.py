@@ -15,7 +15,7 @@ class LambdaAnswerQuestionStack(Stack):
         # create lambda function
         question_handler = _lambda.Function(
             self, "handle_question_function",
-            runtime=_lambda.Runtime.PYTHON_3_7,
+            runtime=_lambda.Runtime.PYTHON_3_12,
             handler="question-handler.handle_question",
             code=_lambda.Code.from_asset(os.path.join(cwd, 'cdk/ai-rag/lambdas/question-handler.py.zip'))
         )
