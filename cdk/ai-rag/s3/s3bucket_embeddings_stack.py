@@ -34,7 +34,7 @@ class S3BucketEmbeddingsStack(Stack):
         # create s3 bucket
         s3 = _s3.Bucket(
             self,
-            "dag1221-embeddings-bucket",
+            "dag211-embeddings-bucket",
             bucket_name=bucket_name
         )
         try:
