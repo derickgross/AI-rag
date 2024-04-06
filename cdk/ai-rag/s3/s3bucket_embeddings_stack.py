@@ -29,7 +29,7 @@ class S3BucketEmbeddingsStack(Stack):
 
         bucket_name = os.environ.get('EMBEDDINGS_BUCKET_NAME')
 
-        embed_destination = f"arn:aws:s3:::{bucket_name}/*" #
+        embed_destination = f"arn:aws:s3:::{bucket_name}/*" ##
 
         # create s3 bucket
         s3 = _s3.Bucket(
