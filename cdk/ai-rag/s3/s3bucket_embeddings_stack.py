@@ -29,7 +29,8 @@ class S3BucketEmbeddingsStack(Stack):
 
         bucket_name = os.environ.get('EMBEDDINGS_BUCKET_NAME')
 
-        embed_destination = f"arn:aws:s3:::{bucket_name}/*" ##
+        # embed_destination = f"arn:aws:s3:::{bucket_name}/*"
+        embed_destination = f"s3//{bucket_name}/embeddings/embeddings.csv" ## 's3://bucket/folder/path/file.csv
 
         # create s3 bucket
         s3 = _s3.Bucket(
@@ -44,5 +45,13 @@ class S3BucketEmbeddingsStack(Stack):
             embed_docs(destination=embed_destination)
         except:
             print("Failed to create S3 bucket")
+
+        # # create embed docs lambda function
+        # embed_docs_handler = _lambda.Function(
+        #     self, "handle_embed_docs_function",
+        #     runtime=_lambda.Runtime.PYTHON_3_12,
+        #     handler="question-handler.handle_question",
+        #     code=_lambda.Code.from_asset(os.path.join(cwd, 'cdk/ai-rag/lambdas/question-handler.py.zip'))
+        # )
 
         # embed_docs(destination=embed_destination)
