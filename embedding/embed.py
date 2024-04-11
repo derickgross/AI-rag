@@ -1,4 +1,4 @@
-# https://github.com/nheingit/AI-101/blob/step-1/embedding/embed.py
+# This file has been adapted from https://github.com/nheingit/AI-101/blob/step-1/embedding/embed.py
 import pandas as pd
 import os
 import tiktoken
