@@ -13,6 +13,7 @@
 # }
 
 from aws_cdk import(
+    aws_lambda as _lambda,
     aws_s3 as _s3,
     Stack
 )
@@ -26,6 +27,8 @@ load_dotenv()
 class S3BucketEmbeddingsStack(Stack):
     def __init__(self, scope: Construct, id: str, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
+
+        cwd = os.getcwd() ##
 
         bucket_name = os.environ.get('EMBEDDINGS_BUCKET_NAME')
 
