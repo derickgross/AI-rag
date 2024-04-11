@@ -47,11 +47,11 @@ class S3BucketEmbeddingsStack(Stack):
             print("Failed to create S3 bucket")
 
         # # create embed docs lambda function
-        # embed_docs_handler = _lambda.Function(
-        #     self, "handle_embed_docs_function",
-        #     runtime=_lambda.Runtime.PYTHON_3_12,
-        #     handler="question-handler.handle_question",
-        #     code=_lambda.Code.from_asset(os.path.join(cwd, 'cdk/ai-rag/lambdas/question-handler.py.zip'))
-        # )
+        embed_docs_handler = _lambda.Function(
+            self, "handle_embed_docs_function",
+            runtime=_lambda.Runtime.PYTHON_3_12,
+            handler="embed-docs-handler.handle_embed_docs",
+            code=_lambda.Code.from_asset(os.path.join(cwd, 'cdk/ai-rag/lambdas/embed.py.zip'))
+        )
 
         # embed_docs(destination=embed_destination)
