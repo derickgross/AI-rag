@@ -54,7 +54,7 @@ class S3BucketEmbeddingsStack(Stack):
             self, "handle_embed_docs_function",
             runtime=_lambda.Runtime.PYTHON_3_11,
             architecture=_lambda.Architecture.ARM_64,
-            handler="embed-docs-handler.handle_embed_docs",
+            handler="embed-docs-handler.embed-docs-handler.handle_embed_docs",
             code=_lambda.Code.from_asset(os.path.join(cwd, 'cdk/ai-rag/lambdas/embed_docs_handler.zip'))
             # code=_lambda.Code.from_asset(os.path.join(cwd, 'cdk/ai-rag/lambdas/embed_docs_handler_layer_content.zip'))
         )
