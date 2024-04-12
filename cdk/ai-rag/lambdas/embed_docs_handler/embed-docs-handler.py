@@ -1,4 +1,4 @@
-from embedding.embed import embed_docs
+from embed_docs_handler.embedding.embed import embed_docs
 import os
 
 def handle_embed_docs(event, context):
