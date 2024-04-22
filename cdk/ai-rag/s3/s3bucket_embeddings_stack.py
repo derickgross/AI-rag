@@ -2,9 +2,9 @@ from aws_cdk import(
     aws_lambda as _lambda,
     aws_s3 as _s3,
     aws_ecr as ecr,
-    Stack,
-    Construct
+    Stack
 )
+from constructs import Construct
 from embedding.embed import embed_docs
 import os
 from dotenv import load_dotenv
