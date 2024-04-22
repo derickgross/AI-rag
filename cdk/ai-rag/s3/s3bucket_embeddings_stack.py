@@ -50,13 +50,12 @@ class S3BucketEmbeddingsStack(Stack):
             print("Failed to create S3 bucket")
 
         # # create embed docs lambda function
-        embed_docs_handler = _lambda.Function(
+        embed_docs_handler = _lambda.DockerImageFunction(
             self, "handle_embed_docs_function",
             runtime=_lambda.Runtime.PYTHON_3_12,
             architecture=_lambda.Architecture.ARM_64,
             handler="embed_docs_handler.embed-docs-handler.handle_embed_docs",
-            code=_lambda.Code.from_asset(os.path.join(cwd, 'cdk/ai-rag/lambdas/embed_docs_handler.zip'))
-            # code=_lambda.Code.from_asset(os.path.join(cwd, 'cdk/ai-rag/lambdas/embed_docs_handler_layer_content.zip'))
+            code=_lambda.DockerImageCode.from_ecr(repository="819190120328.dkr.ecr.us-east-1.amazonaws.com/embed-lambda", tag="latest")
         )
 
         # embed_docs(destination=embed_destination)
