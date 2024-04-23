@@ -38,7 +38,6 @@ class S3BucketEmbeddingsStack(Stack):
             self, "handle_embed_docs_function",
             architecture=_lambda.Architecture.ARM_64,
             code=_lambda.DockerImageCode.from_ecr(repository=ecr_repository, tag="latest"),
-            handler="embed_docs_handler.handle_embed_docs",
         )
 
         try:
