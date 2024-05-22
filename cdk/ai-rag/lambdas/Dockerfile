@@ -22,7 +22,7 @@ RUN pip install -r requirements.txt
 WORKDIR ${LAMBDA_TASK_ROOT}/embed_docs_handler
 
 # Copy function code to the embed_docs_handler directory
-COPY ./embed_docs_handler/embed-docs-handler.py .
+COPY ./embed_docs_handler/embed_docs_handler.py .
 COPY ./embed_docs_handler/__init__.py .
 
 # Set the CMD to your handler (could also be done as a parameter override outside of the Dockerfile)
