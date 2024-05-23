@@ -35,7 +35,7 @@ class S3BucketEmbeddingsStack(Stack):
 
         # create embed docs lambda function
         embed_docs_handler = _lambda.DockerImageFunction(
-            self, "handle_embed_docs_function_v2",
+            self, "handle_embed_docs_function",
             architecture=_lambda.Architecture.ARM_64,
             code=_lambda.DockerImageCode.from_ecr(repository=ecr_repository, tag="latest"),
         )
