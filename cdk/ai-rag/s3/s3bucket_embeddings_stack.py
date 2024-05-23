@@ -40,6 +40,8 @@ class S3BucketEmbeddingsStack(Stack):
             code=_lambda.DockerImageCode.from_ecr(repository=ecr_repository, tag="latest"),
         )
 
+        embed_docs_handler.add_environment("DUMMY_VAR", "force_redeploy") # trivial change to force lambda redeploy
+
         try:
             embed_docs_handler.add_environment("DESTINATION", embed_destination)
             print("Lambda function created successfully")
