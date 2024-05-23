@@ -14,7 +14,7 @@ jobs:
       AWS_REGION: ${{ secrets.AWS_REGION || 'us-east-1' }}
       AWS_CF_DOMAIN: '${{ secrets.AWS_CF_DOMAIN }}'
       DEPLOYMENT_DIR: $(pwd | sed 's/\//./g').cdk.ai-rag.app
-      EMBEDDINGS_BUCKET_NAME: "dag1221-embeddings-bucket"
+      EMBEDDINGS_BUCKET_NAME: "dag211-embeddings-bucket"
       NODE_VERSION: 20.x
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
     strategy:
