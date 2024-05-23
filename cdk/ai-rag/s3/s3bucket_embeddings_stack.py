@@ -19,7 +19,7 @@ class S3BucketEmbeddingsStack(Stack):
 
         bucket_name = os.environ.get('EMBEDDINGS_BUCKET_NAME')
 
-        embed_destination = f"s3://{bucket_name}/embeddings/embeddings.csv" # 's3://bucket/folder/path/file.csv
+        embed_destination = f"s3://{bucket_name}/embeddings/embeddings.csv"
 
         # create s3 bucket
         s3 = _s3.Bucket(
