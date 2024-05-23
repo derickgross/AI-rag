@@ -35,12 +35,10 @@ class S3BucketEmbeddingsStack(Stack):
 
         # create embed docs lambda function
         embed_docs_handler = _lambda.DockerImageFunction(
-            self, "handle_embed_docs_function",
+            self, "handle_embed_docs_function_v2",
             architecture=_lambda.Architecture.ARM_64,
             code=_lambda.DockerImageCode.from_ecr(repository=ecr_repository, tag="latest"),
         )
-
-        embed_docs_handler.add_environment("DUMMY_VAR", "force_redeploy") # trivial change to force lambda redeploy
 
         try:
             embed_docs_handler.add_environment("DESTINATION", embed_destination)
