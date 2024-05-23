@@ -1,0 +1,5 @@
+openai==0.27.6
+pandas==2.2.2
+regex
+tiktoken==0.4.0
+langchain==0.0.199
