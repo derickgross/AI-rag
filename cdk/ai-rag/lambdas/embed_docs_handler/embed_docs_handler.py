@@ -1,5 +1,6 @@
+print("Loading requirements for embed_docs_handler.py")
+
 from embed import embed_docs
-from dotenv import load_dotenv
 import logging
 import os
 
@@ -13,13 +14,13 @@ def log_directory_contents():
     logger.info(f"Contents of the current working directory ({cwd}): {files}")
 
 def lambda_handler(event, context):
-    print("Inside lambda_handler")
+    logger.info("Inside lambda_handler")
     try:
-        print("Trying handle_embed_docs")
+        logger.info("Trying handle_embed_docs")
         # Attempt to call the original handler
         return handle_embed_docs(event, context)
     except Exception as e:
-        print(f"handle_embed_docs failed: {str(e)}")
+        logger.info(f"handle_embed_docs failed: {str(e)}")
         # Log the directory contents upon failure
         log_directory_contents()
         # Optionally, log any other details
