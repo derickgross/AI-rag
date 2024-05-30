@@ -1,16 +1,17 @@
 # This file has been adapted from https://github.com/nheingit/AI-101/blob/step-1/embedding/embed.py
+print("Loading requirements for embed.py")
+
 import pandas as pd
 import os
 import tiktoken
 import openai
-from dotenv import load_dotenv
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 def embed_docs(destination=None):
   """
   Creates an embedding from MDN docs. 
   """
-  load_dotenv()
+  # load_dotenv()
   openai.api_key = os.environ.get('OPENAI_API_KEY')
 
   DOMAIN = "developer.mozilla.org"

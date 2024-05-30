@@ -5,11 +5,10 @@ from aws_cdk import(
     Stack
 )
 from constructs import Construct
-from embedding.embed import embed_docs
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
 class S3BucketEmbeddingsStack(Stack):
     def __init__(self, scope: Construct, id: str, **kwargs) -> None:
