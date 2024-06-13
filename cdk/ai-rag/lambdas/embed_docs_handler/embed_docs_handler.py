@@ -1,6 +1,6 @@
 print("Loading requirements for embed_docs_handler.py")
 
-from embed import embed_docs
+import embed
 import logging
 import os
 
@@ -36,7 +36,7 @@ def handle_embed_docs(event, context):
 
     embed_destination = f"s3//{bucket_name}/embeddings/embeddings.csv" ## 's3://bucket/folder/path/file.csv
 
-    answer = embed_docs(destination=embed_destination)
+    answer = embed.embed_docs(destination=embed_destination)
 
     return {
         'statusCode': 200,

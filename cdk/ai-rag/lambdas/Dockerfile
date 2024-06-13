@@ -28,7 +28,7 @@ RUN pip3 install --use-pep517 -r requirements.txt
 RUN pip freeze
 
 # Create directory for function code
-WORKDIR ${LAMBDA_TASK_ROOT}/embed_docs_handler
+WORKDIR ${LAMBDA_TASK_ROOT}
 
 # Copy function code to the embed_docs_handler directory
 COPY ./embed_docs_handler/embed_docs_handler.py .
@@ -44,5 +44,4 @@ COPY ./text/developer.mozilla.org /var/task/text/developer.mozilla.org
 RUN mkdir -p /var/task/processed
 
 # Set the CMD to your handler (could also be done as a parameter override outside of the Dockerfile)
-# CMD ["embed_docs_handler.handle_embed_docs"]
-CMD ["embed_docs_handler.lambda_handler"]
+CMD [ "embed_docs_handler.embed_docs_handler.handle_embed_docs" ]
